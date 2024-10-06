@@ -11,6 +11,7 @@ import SubmitButton from "../SubmitButton"
 import { useState } from "react"
 import { UserFormValidation } from "@/lib/validation"
 import { useRouter } from "next/navigation"
+import { createUser } from "@/lib/actions/patient.actions"
 
 
 
@@ -42,19 +43,22 @@ const  PatientForm = () => {
   // 2. Define a submit handler.
   async function onSubmit({ name, email, phone}: z.infer<typeof UserFormValidation>) {
    
-    setIsLoading(true)
+    setIsLoading(true);
 
     try{
-      // const userData = { name, email, phone };
-      // const user = await createUser(userData);
+      const userData = { name, email, phone };
 
-      // if(user) {
-      //   router.push(`/patients/${user.$id}/register`)
-      // }
+      const user = await createUser(userData);
+
+      if(user) router.push(`/patients/${user.$id}/register`)
+      
     } catch (error) {
       console.log(error)
-    }
+    } 
+    setIsLoading(false)
+    
   }
+
   return (
     <Form {...form}>
     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 flex-1">
@@ -96,6 +100,11 @@ const  PatientForm = () => {
 }
 
 export default PatientForm
+
+
+
+
+
 
 
 
