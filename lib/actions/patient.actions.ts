@@ -39,6 +39,19 @@ export const getUser = async (userId: string) => {
     }
 }
 
+export const getPatient = async (userId: string) => {
+    try {
+        const patients = await databases.listDocuments(
+            DATABASE_ID!,
+            PATIENT_COLLECTION_ID!,
+            [Query.equal('userId', userId)]
+        )
+        return parseStringify(patients.documents[0])
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 //we are registering patients, and here its takes in the identificationdocument that was uploaded as props
 // and all the other patient information which is passed as a spread operator ...patient
 
@@ -55,6 +68,15 @@ export const registerPatient = async ({identificationDocument, ...patient}: Regi
         // we are first parsing it into app-write storage before its goes into appwrite database
         file = await storage.createFile(BUCKET_ID!, ID.unique(), inputFile)
     }
+
+    console.log(
+        {
+            identificationDocumentId: file?.$id || null,
+            identificationDocumentUrl: `${ENDPOINT}/storage/buckets/${BUCKET_ID}/files/${file?.$id}/view?project=${PROJECT_ID}`,
+            ...patient
+        },
+        
+    )
 
     // create the new patient information and documents on the appwrite database
     const newPatient = await databases.createDocument(
