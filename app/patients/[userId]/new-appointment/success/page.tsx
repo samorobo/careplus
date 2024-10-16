@@ -1,3 +1,4 @@
+//import ConfettiWrapper from '@/components/Confetti';
 import { Button } from '@/components/ui/button';
 import { Doctors } from '@/constants';
 import { getAppointment } from '@/lib/actions/appointment.actions';
@@ -5,15 +6,18 @@ import { formatDateTime } from '@/lib/utils';
 import Image from 'next/image'
 import Link from 'next/link'
 import React, {useState, useEffect} from 'react'
-//import * as Sentry from '@sentry/nextjs'
+
+import * as Sentry from '@sentry/nextjs'
 import { getUser } from '@/lib/actions/patient.actions';
+
+
 const Success = async ({params: {userId}, searchParams}: SearchParamProps) => {
     const user = await getUser(userId);
     const appointmentId = (searchParams?.appointmentId as string) || '';
     const appointment = await getAppointment(appointmentId);
     const doctor = Doctors.find((doc) => doc.name === appointment.primaryPhysician)
           
-    //Sentry.metrics.set("user_view_appointment-success", user.name);
+    Sentry.metrics.set("user_view_appointment-success", user.name);
 
   return (
     <>
@@ -49,7 +53,7 @@ const Success = async ({params: {userId}, searchParams}: SearchParamProps) => {
     </div>
     <div className='flex gap-2'>
     <Image
-    src="/assets/icons/calender.svg"
+    src="/assets/icons/calendar.svg"
     height={24}
     width={24}
     alt="calender"
@@ -63,7 +67,7 @@ const Success = async ({params: {userId}, searchParams}: SearchParamProps) => {
     </Link>
     </Button>
     <p className='copyright'>
-    © 2024 CarePulse
+    © 2024 Richard's clinic
     </p>
     </div>
     </div>

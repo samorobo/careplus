@@ -47,14 +47,15 @@ const AppointmentForm = ( {userId, patientId, type, appointment, setOpen}:
     resolver: zodResolver(AppointmentFormValidation),
     defaultValues: {
      primaryPhysician: appointment ? appointment.primaryPhysician : '' ,
-     schedule: appointment ? new Date(appointment?.schedule): new Date(Date.now()),
+     schedule: appointment ? new Date(appointment?.schedule) : new Date(Date.now()),
     reason: appointment ? appointment.reason : '',
     note: appointment?.note || '',
-    cancellationReason: appointment?.cancellationReason || '',
+    cancellationReason:  appointment?.cancellationReason || '',
     },
   })
 
   const onSubmit = async(values: z.infer<typeof AppointmentFormValidation>) => {
+    console.log("I'M SUBMITTING", {type})
     setIsLoading(true);
     let status;
     switch(type){
@@ -87,7 +88,6 @@ const AppointmentForm = ( {userId, patientId, type, appointment, setOpen}:
         }
       }
       else{
-        
         const appointmentToUpdate = {
           userId,
           appointmentId: appointment?.$id!,
