@@ -20,11 +20,12 @@ export default function Home({ searchParams}: SearchParamProps) {
           alt="patient" 
           className="mb-12 h-10 w-fit" />
           <PatientForm/>
-          <div className="text-14-regular mt-20 flex justify-between">
+          <div className="text-14-regular mt-20 flex justify-between flex-wrap">
             <p className="justify-items-end text-dark-600 xl:text-left">
             © 2024 CarePulse
             </p>
             <Link href="/?admin=true" className="text-green-500">Admin</Link>
+            <Link href="/chat-bot" className="text-green-500">Chat</Link>
             </div>
         </div>
       </section>
