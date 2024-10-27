@@ -7,7 +7,8 @@
 ![Pull Requests](https://img.shields.io/github/issues-pr/ladunjexa/nextjs14-carepulse)
 ![Known Vulnerabilities](https://snyk.io/test/github/ladunjexa/nextjs14-carepulse/badge.svg)
 
-![Project Logo](/public/assets/images/carepulse_screenshot)
+![Project Screenshot](/public/assets/images/carepulse_screenshot)
+
 ## 🌐 Live Demo
 Explore the live demonstration of the project: [nextjs14-carepulse](#)
 
