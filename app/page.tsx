@@ -1,3 +1,5 @@
+"use client"
+
 import PasskeyModal from "@/components/PasskeyModal";
 import PatientForm from "@/components/forms/PatientForm";
 import { Button } from "@/components/ui/button";
@@ -26,6 +28,7 @@ export default function Home({ searchParams}: SearchParamProps) {
             </p>
             <Link href="/?admin=true" className="text-green-500">Admin</Link>
             <Link href="/chat-bot" className="text-green-500">Chat</Link>
+            <Link href="/blogPost" className="text-green-500">Blog Post</Link>
             </div>
         </div>
       </section>
