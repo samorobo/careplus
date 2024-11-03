@@ -4,14 +4,14 @@ import { Button } from "@/components/ui/button";
 import { getPatient } from "@/lib/actions/patient.actions";
 import Image from "next/image";
 import Link from "next/link";
-//import * as Sentry from "@sentry/nextjs"
+import * as Sentry from "@sentry/nextjs"
 
 
 export default async  function NewAppointment({params: { userId}}: SearchParamProps) {
     const patient = await getPatient(userId);
 
     //Using sentry to check and track how many users viewed the new-appointment page
-    //Sentry.metrics.set("user_view_new-appointment", patient.name);
+    Sentry.metrics.set("user_view_new-appointment", patient.name);
   return (
     <div className="flex h-screen max-h-screen">
       <section className="remove-scrollbar container my-auto">
