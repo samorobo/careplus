@@ -11,7 +11,7 @@ export default async  function NewAppointment({params: { userId}}: SearchParamPr
     const patient = await getPatient(userId);
 
     //Using sentry to check and track how many users viewed the new-appointment page
-    Sentry.metrics.set("user_view_new-appointment", patient.name);
+    Sentry.metrics.set("user_view_new-appointment", patient?.name);
   return (
     <div className="flex h-screen max-h-screen"> 
       <section className="remove-scrollbar container my-auto">
@@ -22,6 +22,7 @@ export default async  function NewAppointment({params: { userId}}: SearchParamPr
           alt="patient" 
           className="mb-12 h-10 w-fit" />
           {/* <PatientForm/> */}
+           {/* @ts-ignore */}
           <AppointmentForm type='create' userId={userId} patientId={patient.$id} />
         
             <p className="copyright mt-10 py-12">

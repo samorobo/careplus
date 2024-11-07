@@ -35,7 +35,7 @@ export const columns: ColumnDef<Appointment>[] = [
     cell: ({ row }) => {
       const appointment = row.original;
 
-      return <p className="text-14-medium">{appointment.patient.name}</p>
+      return <p className="text-14-medium">{appointment.patient?.name}</p>
     }
    },
     
@@ -61,12 +61,12 @@ export const columns: ColumnDef<Appointment>[] = [
     accessorKey: "primaryPhysician",
     header: () => "Doctor",
     cell: ({ row }) => {
-      const doctor = Doctors.find((doc) => doc.name === row.original.primaryPhysician)
+      const doctor = Doctors.find((doc) => doc?.name === row.original.primaryPhysician)
 
        // @ts-ignore
       return (
         <div className="flex items-center gap-3">
-          <Image src={doctor?.image}
+          <Image src={doctor?.image || 'images/doctor.jpg'}
           alt={doctor?.name || 'Doctor'}
           width={100}
           height={100}

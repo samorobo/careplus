@@ -11,7 +11,7 @@ const Register =  async ({ params: { userId }}: SearchParamProps) => {
     const user = await getUser(userId);
 
     //using sentry to check and track how users have viewed the registration page
-    Sentry.metrics.set("user_view_register", user.name);
+    Sentry.metrics.set("user_view_register", user?.name);
   return (
     <div className="flex h-screen max-h-screen">
       <section className="remove-scrollbar container">

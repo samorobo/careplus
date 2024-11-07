@@ -115,8 +115,8 @@ import { Checkbox } from "./ui/checkbox"
             return(
               <FormControl>
                 <div className="flex items-center gap-4">
-                  <Checkbox id={props.name} checked={field.value} onCheckedChange={field.onChange} />
-                  <label htmlFor={props.name} className="checked-label">
+                  <Checkbox id={props?.name} checked={field.value} onCheckedChange={field.onChange} />
+                  <label htmlFor={props?.name} className="checked-label">
                     {props.label}
                   </label>
                 </div>

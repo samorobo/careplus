@@ -51,7 +51,7 @@ const  RegisterForm = ({ user }: {user: User}) => {
         })
         formData = new FormData();
         formData.append('blobFile', blobFile)
-        formData.append("fileName", values.identificationDocument[0].name)
+        formData.append("fileName", values.identificationDocument[0]?.name)
 
     }
 
@@ -197,12 +197,12 @@ const  RegisterForm = ({ user }: {user: User}) => {
         label="Primary Physician" 
         placeholder="Select a physician">
             {Doctors.map((doctor) => (
-                <SelectItem key={doctor.name} value={doctor.name}>
+                <SelectItem key={doctor.name} value={doctor?.name}>
                     <div className="flex cursor-pointer items-center gap-2">
                         <Image 
                         src={doctor.image} 
-                        width={24} height={24} alt={doctor.name} className="rounded-full border border-dark-500" />
-                        <p>{doctor.name}</p>
+                        width={24} height={24} alt={doctor?.name} className="rounded-full border border-dark-500" />
+                        <p>{doctor?.name}</p>
                     </div>
                 </SelectItem>
             ))}
