@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image";
 import { useState, useEffect, FormEvent, useRef } from "react";
 
 type Message = {
@@ -85,8 +86,14 @@ const ChatPage = () => {
         <div className="flex flex-col h-screen bg-gray-100">
             {/* Header */}
 
-            <header className="bg-white shadow px-4 py-4">
-                <h1 className="text-2xl font-semibold text-gray-800">
+            <header className="bg-gray-300 shadow px-4 py-4 flex flex-row justify-between">
+            <Image 
+            src="/assets/icons/logo-full.svg" 
+            height={1000} width={1000} 
+            alt="patient" 
+            className="h-10 w-auto" 
+          />
+                <h1 className="text-2xl font-semibold  text-gray-800 hidden sm:block">
                     Chat with CarePulse AI bot
                 </h1>
             </header>
@@ -128,7 +135,7 @@ const ChatPage = () => {
                 onChange={(e) => setInput(e.target.value)} 
                 placeholder="Type your message..." 
                 className="flex-1 border border-gray-300 rounded-full px-4 py-2 focus:outline" disabled={loading} />
-                <button type="submit" className="mt-4 bg-blue-500 text-whitep-2 rounded-full hover:bg-blue-600 focus:outline-none disabled:bg-blue-300"
+                <button type="submit" className="mt-4 bg-blue-500 text-white p-2 rounded-full hover:bg-blue-600 focus:outline-none disabled:bg-blue-300"
                 disabled={loading}>
                     {/* Send Icon (Paper Plane) */}
                     <svg xmlns="http://www.w#.org/2000/svg"

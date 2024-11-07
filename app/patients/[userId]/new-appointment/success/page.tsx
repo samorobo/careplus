@@ -1,3 +1,5 @@
+
+
 //import ConfettiWrapper from '@/components/Confetti';
 import { Button } from '@/components/ui/button';
 import { Doctors } from '@/constants';
@@ -9,6 +11,9 @@ import React, {useState, useEffect} from 'react'
 
 import * as Sentry from '@sentry/nextjs'
 import { getUser } from '@/lib/actions/patient.actions';
+//import ConfettiExplosion from 'react-confetti-explosion';
+//import Confetti from "react-confetti"
+
 
 
 const Success = async ({params: {userId}, searchParams}: SearchParamProps) => {
@@ -21,7 +26,6 @@ const Success = async ({params: {userId}, searchParams}: SearchParamProps) => {
 
   return (
     <>
-        {/* <ConfettiWrapper/> */}
       <div  className='flex h-screen max-h-screen px-[5%]'>
     <div className='success-img'>
     <Link href="/">
@@ -66,9 +70,14 @@ const Success = async ({params: {userId}, searchParams}: SearchParamProps) => {
       New Appointment
     </Link>
     </Button>
+    <div className='flex flex-row justify-between gap-8'>
     <p className='copyright'>
     © 2024 Richard's clinic
     </p>
+    <Link href="/blogPost">Blog Post</Link>
+    <Link href="/chat-bot">Chat Bot</Link>
+    <Link href="/">Home</Link>
+    </div>
     </div>
     </div>
     </>

@@ -1,3 +1,5 @@
+"use client"
+
 import PasskeyModal from "@/components/PasskeyModal";
 import PatientForm from "@/components/forms/PatientForm";
 import { Button } from "@/components/ui/button";
@@ -25,7 +27,7 @@ export default function Home({ searchParams}: SearchParamProps) {
             © 2024 CarePulse
             </p>
             <Link href="/?admin=true" className="text-green-500">Admin</Link>
-            <Link href="/chat-bot" className="text-green-500">Chat</Link>
+            
             </div>
         </div>
       </section>
