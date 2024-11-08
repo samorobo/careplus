@@ -1,7 +1,7 @@
 "use client"
 
 import PasskeyModal from "@/components/PasskeyModal";
-import PatientForm from "@/components/forms/PatientForm";
+import PatientFormModal from "@/components/forms/PatientFormModal";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
@@ -21,7 +21,7 @@ export default function Home({ searchParams}: SearchParamProps) {
           height={1000} width={1000} 
           alt="patient" 
           className="mb-12 h-10 w-fit" />
-          <PatientForm/>
+          <PatientFormModal/>
           <div className="text-14-regular mt-20 flex justify-between flex-wrap">
             <p className="justify-items-end text-dark-600 xl:text-left">
             © 2024 CarePulse

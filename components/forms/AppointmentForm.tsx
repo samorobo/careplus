@@ -16,13 +16,13 @@ import {
 import { Input } from "@/components/ui/input"
 
 import { z } from "zod"
-import CustomFormField from "../CustomFormField";
+import CustomDefaultFormField from "../CustomDefaultFormField";
 import SubmitButton from "../SubmitButton";
 import { useState } from "react";
 import { CreateAppointmentSchema, UserFormValidation, getAppointmentSchema } from "@/lib/validation";
 import { useRouter } from "next/navigation";
 import { createUser } from "@/lib/actions/patient.actions";
-import { FormFieldType } from "./PatientForm";
+import { FormFieldChoiceType } from "./PatientFormModal";
 import { Doctors } from "@/constants";
 import { SelectItem } from "../ui/select";
 import Image from "next/image";
@@ -138,9 +138,9 @@ const AppointmentForm = ( {userId, patientId, type, appointment, setOpen}:
         {
             type !== "cancel" && (
                 <>
-        <CustomFormField 
+        <CustomDefaultFormField 
       control={form.control}
-       fieldType={FormFieldType.SELECT}
+       fieldType={FormFieldChoiceType.SELECT}
        name="primaryPhysician"
        label="Doctor"
        placeholder="Select a doctor"
@@ -161,9 +161,9 @@ const AppointmentForm = ( {userId, patientId, type, appointment, setOpen}:
             </SelectItem>
           ))
         }
-       </CustomFormField>
-        <CustomFormField
-        fieldType={FormFieldType.DATE_PICKER}
+       </CustomDefaultFormField>
+        <CustomDefaultFormField
+        fieldType={FormFieldChoiceType.DATE_PICKER}
         control={form.control}
         name="schedule"
         label="Expected appointment date"
@@ -171,15 +171,15 @@ const AppointmentForm = ( {userId, patientId, type, appointment, setOpen}:
         dateFormat="MM/dd/yyyy - h:mm aa"
         /> 
         <div className="flex flex-col gap-6 xl:flex-row">
-        <CustomFormField
-        fieldType={FormFieldType.TEXTAREA}
+        <CustomDefaultFormField
+        fieldType={FormFieldChoiceType.TEXTAREA}
         control={form.control}
         name="reason"
         label="Reason for appointment"
         placeholder="Enter reason for appointment"
         />
-        <CustomFormField
-        fieldType={FormFieldType.TEXTAREA}
+        <CustomDefaultFormField
+        fieldType={FormFieldChoiceType.TEXTAREA}
         control={form.control}
         name="note"
         label="Notes"
@@ -190,8 +190,8 @@ const AppointmentForm = ( {userId, patientId, type, appointment, setOpen}:
         )}
      {
         type === "cancel" && (
-            <CustomFormField
-            fieldType={FormFieldType.TEXTAREA}
+            <CustomDefaultFormField
+            fieldType={FormFieldChoiceType.TEXTAREA}
             control={form.control}
             name="cancellationReason"
             label="Reason for cancellation"

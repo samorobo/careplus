@@ -6,7 +6,7 @@ import { z } from "zod"
 import { Button } from "@/components/ui/button"
 import { Form } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import CustomFormField from "../CustomFormField"
+import CustomDefaultFormField from "../CustomDefaultFormField"
 import SubmitButton from "../SubmitButton"
 import { useState } from "react"
 import { UserFormValidation } from "@/lib/validation"
@@ -17,7 +17,7 @@ import { createUser } from "@/lib/actions/patient.actions"
 
 
 
-export enum FormFieldType{
+export enum FormFieldChoiceType{
     INPUT = 'input',
     TEXTAREA= 'textarea',
     PHONE_INPUT = 'phoneInput',
@@ -27,7 +27,7 @@ export enum FormFieldType{
     SKELETON = 'skeleton',
 }
  
-const  PatientForm = () => {
+const  PatientFormModal = () => {
   const router = useRouter()
   const [isLoading, setIsLoading] = useState(false)
   // 1. Define your form.
@@ -66,27 +66,27 @@ const  PatientForm = () => {
             <h1 className="header">Hi there 👋</h1>
             <p className="text-dark-700">Schedule your first appointment</p>
         </section>
-        <CustomFormField 
+        <CustomDefaultFormField 
         control={form.control} 
-        fieldType={FormFieldType.INPUT} 
+        fieldType={FormFieldChoiceType.INPUT} 
         name="name" 
         label="Full name" 
         placeholder="John Doe"
         iconSrc="/assets/icons/user.svg"
         iconAlt="user" />
 
-        <CustomFormField 
+        <CustomDefaultFormField 
         control={form.control} 
-        fieldType={FormFieldType.INPUT} 
+        fieldType={FormFieldChoiceType.INPUT} 
         name="email" 
         label="Email" 
         placeholder="sammy@master.pro"
         iconSrc="/assets/icons/email.svg"
         iconAlt="email" />
 
-         <CustomFormField 
+         <CustomDefaultFormField 
         control={form.control} 
-        fieldType={FormFieldType.PHONE_INPUT} 
+        fieldType={FormFieldChoiceType.PHONE_INPUT} 
         name="phone" 
         label="Phone number" 
         placeholder="(555) 123-4567"
@@ -99,7 +99,7 @@ const  PatientForm = () => {
   )
 }
 
-export default PatientForm
+export default PatientFormModal
 
 
 

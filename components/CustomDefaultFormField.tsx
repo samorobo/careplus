@@ -10,7 +10,7 @@ import {
   } from "@/components/ui/form"
   import { Input } from "@/components/ui/input"
   import { Control } from "react-hook-form"
-import { FormFieldType } from "./forms/PatientForm"
+import { FormFieldChoiceType } from "./forms/PatientFormModal"
 import Image from "next/image"
 //import PhoneInput from "react-phone-number-input/input"
 import "react-phone-number-input/style.css"
@@ -26,7 +26,7 @@ import { Checkbox } from "./ui/checkbox"
 
   interface CustomProps {
     control: Control<any>,
-    fieldType: FormFieldType,
+    fieldType: FormFieldChoiceType,
     name: string,
     label?: string,
     placeholder?: string,
@@ -42,7 +42,7 @@ import { Checkbox } from "./ui/checkbox"
   const RenderField = ({field, props}: {field: any, props: CustomProps}) => {
     const { fieldType, iconSrc, iconAlt, placeholder, showTimeSelect,dateFormat, renderSkeleton } = props
     switch (fieldType) {
-        case FormFieldType.INPUT:
+        case FormFieldChoiceType.INPUT:
         return(
             <div className='flex rounded-md border border-dark-500 bg-dark-400'>
                 {
@@ -56,13 +56,13 @@ import { Checkbox } from "./ui/checkbox"
                 </FormControl>
             </div>
         )
-        case FormFieldType.TEXTAREA:
+        case FormFieldChoiceType.TEXTAREA:
           return(
             <FormControl>
               <Textarea placeholder={placeholder} {...field} className="shad-textArea" disabled={props.disabled} />
             </FormControl>
           )
-      case FormFieldType.PHONE_INPUT: 
+      case FormFieldChoiceType.PHONE_INPUT: 
       return(
        <FormControl>
         <PhoneInput
@@ -76,7 +76,7 @@ import { Checkbox } from "./ui/checkbox"
         />
        </FormControl>
       )
-      case FormFieldType.DATE_PICKER:
+      case FormFieldChoiceType.DATE_PICKER:
         return(
           <div className="flex rounded-md border border-dark-500 bg-dark-400">
             <Image src="/assets/icons/calender.svg" height={24} width={24} alt="calender" className="ml-2 bg-white" />
@@ -92,7 +92,7 @@ import { Checkbox } from "./ui/checkbox"
           </div>
         )
 
-        case FormFieldType.SELECT:
+        case FormFieldChoiceType.SELECT:
           return (
             <FormControl>
               <Select onValueChange={field.onChange} defaultValue={field.value}>
@@ -107,11 +107,11 @@ import { Checkbox } from "./ui/checkbox"
               </Select>
             </FormControl>
           )
-        case FormFieldType.SKELETON:
+        case FormFieldChoiceType.SKELETON:
           return (
             renderSkeleton ? renderSkeleton(field) : null
           )
-          case FormFieldType.CHECKBOX:
+          case FormFieldChoiceType.CHECKBOX:
             return(
               <FormControl>
                 <div className="flex items-center gap-4">
@@ -131,7 +131,7 @@ import { Checkbox } from "./ui/checkbox"
   }
 
 
-const CustomFormField = (props: CustomProps) => {
+const CustomDefaultFormField = (props: CustomProps) => {
     const { control, fieldType, name, label } = props;
   return (
     <div>
@@ -141,11 +141,11 @@ const CustomFormField = (props: CustomProps) => {
         render={({ field }) => (
           <FormItem className="flex-1">
             {/* if the fieldType is not a checkbox and the label exist, then show the label */}
-            {fieldType !== FormFieldType.CHECKBOX && label && (
+            {fieldType !== FormFieldChoiceType.CHECKBOX && label && (
                 <FormLabel>{label}</FormLabel>
             )}
 
-            {/* we can render different type of field depending on the FormFieldType */}
+            {/* we can render different type of field depending on the FormFieldChoiceType */}
             <RenderField field={field} props={props} />
             <FormMessage className="shad-error" />
           </FormItem>
@@ -155,4 +155,4 @@ const CustomFormField = (props: CustomProps) => {
   )
 }
 
-export default CustomFormField
+export default CustomDefaultFormField

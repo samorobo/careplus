@@ -1,5 +1,5 @@
 import AppointmentForm from "@/components/forms/AppointmentForm";
-import PatientForm from "@/components/forms/PatientForm";
+import PatientFormModal from "@/components/forms/PatientFormModal";
 import { Button } from "@/components/ui/button";
 import { getPatient } from "@/lib/actions/patient.actions";
 import Image from "next/image";
@@ -21,7 +21,7 @@ export default async  function NewAppointment({params: { userId}}: SearchParamPr
           height={1000} width={1000} 
           alt="patient" 
           className="mb-12 h-10 w-fit" />
-          {/* <PatientForm/> */}
+          {/* <PatientFormModal/> */}
            {/* @ts-ignore */}
           <AppointmentForm type='create' userId={userId} patientId={patient.$id} />
         

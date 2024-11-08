@@ -6,15 +6,15 @@ import { z } from "zod"
 import { Button } from "@/components/ui/button"
 import { Form, FormControl } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import CustomFormField from "../CustomFormField"
+import CustomDefaultFormField from "../CustomDefaultFormField"
 import SubmitButton from "../SubmitButton"
 import { useState } from "react"
-import { PatientFormValidation, UserFormValidation } from "@/lib/validation"
+import { PatientFormModalValidation, UserFormValidation } from "@/lib/validation"
 import { useRouter } from "next/navigation"
 import { createUser, registerPatient } from "@/lib/actions/patient.actions"
-import { FormFieldType } from "./PatientForm"
+import { FormFieldChoiceType } from "./PatientFormModal"
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group"
-import { Doctors, GenderOptions, IdentificationTypes, PatientFormDefaultValues } from "@/constants"
+import { Doctors, GenderOptions, IdentificationTypes, PatientFormModalDefaultValues } from "@/constants"
 import { Label } from "../ui/label"
 import { SelectItem } from "../ui/select"
 import Image from "next/image"
@@ -23,14 +23,14 @@ import FileUploader from "../FileUploader"
 
 
  
-const  RegisterForm = ({ user }: {user: User}) => {
+const  RegisterFormModal = ({ user }: {user: User}) => {
   const router = useRouter()
   const [isLoading, setIsLoading] = useState(false)
   // 1. Define your form.
-  const form = useForm<z.infer<typeof PatientFormValidation>>({
-    resolver: zodResolver(PatientFormValidation),
+  const form = useForm<z.infer<typeof PatientFormModalValidation>>({
+    resolver: zodResolver(PatientFormModalValidation),
     defaultValues: {
-        ...PatientFormDefaultValues,
+        ...PatientFormModalDefaultValues,
       name: "",
       email: "",
       phone: "",
@@ -38,7 +38,7 @@ const  RegisterForm = ({ user }: {user: User}) => {
   })
  
   // 2. Define a submit handler.
-  async function onSubmit(values: z.infer<typeof PatientFormValidation>) {
+  async function onSubmit(values: z.infer<typeof PatientFormModalValidation>) {
    
     setIsLoading(true);
 
@@ -88,9 +88,9 @@ const  RegisterForm = ({ user }: {user: User}) => {
             <h2 className="sub-header">Personal Information.</h2>
             </div>
         </section>
-        <CustomFormField 
+        <CustomDefaultFormField 
         control={form.control} 
-        fieldType={FormFieldType.INPUT} 
+        fieldType={FormFieldChoiceType.INPUT} 
         name="name" 
         label="Full Name"
         placeholder="John Doe"
@@ -99,18 +99,18 @@ const  RegisterForm = ({ user }: {user: User}) => {
 
 
         <div className="flex flex-col gap-6 xl:flex-row">
-        <CustomFormField 
+        <CustomDefaultFormField 
         control={form.control} 
-        fieldType={FormFieldType.INPUT} 
+        fieldType={FormFieldChoiceType.INPUT} 
         name="email" 
         label="Email" 
         placeholder="sammy@master.pro"
         iconSrc="/assets/icons/email.svg"
         iconAlt="email" />
 
-         <CustomFormField 
+         <CustomDefaultFormField 
         control={form.control} 
-        fieldType={FormFieldType.PHONE_INPUT} 
+        fieldType={FormFieldChoiceType.PHONE_INPUT} 
         name="phone" 
         label="Phone number" 
         placeholder="(555) 123-4567"
@@ -118,16 +118,16 @@ const  RegisterForm = ({ user }: {user: User}) => {
         </div>
 
         <div className="flex flex-col gap-6 xl:flex-row">
-        <CustomFormField 
+        <CustomDefaultFormField 
         control={form.control} 
-        fieldType={FormFieldType.DATE_PICKER} 
+        fieldType={FormFieldChoiceType.DATE_PICKER} 
         name="birthDate" 
         label="Date of Birth" 
          />
 
-         <CustomFormField 
+         <CustomDefaultFormField 
         control={form.control} 
-        fieldType={FormFieldType.SKELETON} 
+        fieldType={FormFieldChoiceType.SKELETON} 
         name="gender" 
         label="Gender" 
         renderSkeleton={(field) => (
@@ -149,17 +149,17 @@ const  RegisterForm = ({ user }: {user: User}) => {
 
 
         <div className="flex flex-col gap-6 xl:flex-row">
-        <CustomFormField 
+        <CustomDefaultFormField 
         control={form.control} 
-        fieldType={FormFieldType.INPUT} 
+        fieldType={FormFieldChoiceType.INPUT} 
         name="address" 
         label="Address"
         placeholder="Bourdilon avenue, ikoyi, Lagos"
         />
 
-        <CustomFormField 
+        <CustomDefaultFormField 
         control={form.control} 
-        fieldType={FormFieldType.INPUT} 
+        fieldType={FormFieldChoiceType.INPUT} 
         name="occupation" 
         label="Occupation"
         placeholder="Software Engineer"
@@ -167,17 +167,17 @@ const  RegisterForm = ({ user }: {user: User}) => {
         </div>
 
         <div className="flex flex-col gap-6 xl:flex-row">
-        <CustomFormField 
+        <CustomDefaultFormField 
         control={form.control} 
-        fieldType={FormFieldType.INPUT} 
+        fieldType={FormFieldChoiceType.INPUT} 
         name="emergencyContactName" 
         label="Emergency contact name" 
         placeholder="Guardian's name"
         />
 
-         <CustomFormField 
+         <CustomDefaultFormField 
         control={form.control} 
-        fieldType={FormFieldType.PHONE_INPUT} 
+        fieldType={FormFieldChoiceType.PHONE_INPUT} 
         name="emergencyContactNumber" 
         label="Emergency contact number" 
         placeholder="(555) 123-4567"
@@ -190,9 +190,9 @@ const  RegisterForm = ({ user }: {user: User}) => {
             </div>
         </section>
 
-        <CustomFormField 
+        <CustomDefaultFormField 
         control={form.control} 
-        fieldType={FormFieldType.SELECT} 
+        fieldType={FormFieldChoiceType.SELECT} 
         name="primaryPhysician" 
         label="Primary Physician" 
         placeholder="Select a physician">
@@ -206,20 +206,20 @@ const  RegisterForm = ({ user }: {user: User}) => {
                     </div>
                 </SelectItem>
             ))}
-        </CustomFormField>
+        </CustomDefaultFormField>
 
         <div className="flex flex-col gap-6 xl:flex-row">
-        <CustomFormField 
+        <CustomDefaultFormField 
         control={form.control} 
-        fieldType={FormFieldType.INPUT} 
+        fieldType={FormFieldChoiceType.INPUT} 
         name="insuranceProvider" 
         label="Insurance provider"
         placeholder="Leadway Assurance company"
         />
 
-        <CustomFormField 
+        <CustomDefaultFormField 
         control={form.control} 
-        fieldType={FormFieldType.INPUT} 
+        fieldType={FormFieldChoiceType.INPUT} 
         name="insurancePolicyNumber" 
         label="Insurance policy number"
         placeholder="ABC12345679"
@@ -228,17 +228,17 @@ const  RegisterForm = ({ user }: {user: User}) => {
 
 
         <div className="flex flex-col gap-6 xl:flex-row">
-        <CustomFormField 
+        <CustomDefaultFormField 
         control={form.control} 
-        fieldType={FormFieldType.TEXTAREA} 
+        fieldType={FormFieldChoiceType.TEXTAREA} 
         name="allergies" 
         label="Allergies (if any)"
         placeholder="Peanut, penicillin, pollen"
         />
 
-        <CustomFormField 
+        <CustomDefaultFormField 
         control={form.control} 
-        fieldType={FormFieldType.TEXTAREA} 
+        fieldType={FormFieldChoiceType.TEXTAREA} 
         name="currentMedication" 
         label="Current medication (if any)"
         placeholder="Ibuprofen 200mg, paracetamol 500mg"
@@ -246,17 +246,17 @@ const  RegisterForm = ({ user }: {user: User}) => {
         </div>
 
         <div className="flex flex-col gap-6 xl:flex-row">
-        <CustomFormField 
+        <CustomDefaultFormField 
         control={form.control} 
-        fieldType={FormFieldType.TEXTAREA} 
+        fieldType={FormFieldChoiceType.TEXTAREA} 
         name="familyMedicalHistory" 
         label="Family medical history"
         placeholder="Mother had brain cancer, father had heart disease"
         />
 
-        <CustomFormField 
+        <CustomDefaultFormField 
         control={form.control} 
-        fieldType={FormFieldType.TEXTAREA} 
+        fieldType={FormFieldChoiceType.TEXTAREA} 
         name="pastMedicalHistory" 
         label="Past medical history"
         placeholder="Appendectomy, Tonsillectomy"
@@ -269,9 +269,9 @@ const  RegisterForm = ({ user }: {user: User}) => {
             </div>
         </section>
 
-        <CustomFormField 
+        <CustomDefaultFormField 
         control={form.control} 
-        fieldType={FormFieldType.SELECT} 
+        fieldType={FormFieldChoiceType.SELECT} 
         name="identificationType" 
         label="Identification type" 
         placeholder="Select an identification type">
@@ -280,19 +280,19 @@ const  RegisterForm = ({ user }: {user: User}) => {
                     {type}
                 </SelectItem>
             ))}
-        </CustomFormField>
+        </CustomDefaultFormField>
 
-        <CustomFormField 
+        <CustomDefaultFormField 
         control={form.control} 
-        fieldType={FormFieldType.INPUT} 
+        fieldType={FormFieldChoiceType.INPUT} 
         name="identificationNumber" 
         label="Identification number"
         placeholder="12345679"
         />
 
-    <CustomFormField 
+    <CustomDefaultFormField 
         control={form.control} 
-        fieldType={FormFieldType.SKELETON} 
+        fieldType={FormFieldChoiceType.SKELETON} 
         name="identificationDocument" 
         label="Scanned copy of identification document" 
         renderSkeleton={(field) => (
@@ -308,20 +308,20 @@ const  RegisterForm = ({ user }: {user: User}) => {
             </div>
         </section>
 
-        <CustomFormField
-            fieldType={FormFieldType.CHECKBOX}
+        <CustomDefaultFormField
+            fieldType={FormFieldChoiceType.CHECKBOX}
             control={form.control}
             name="treatmentConsent"
             label="I consent to treatment" />
 
-        <CustomFormField
-            fieldType={FormFieldType.CHECKBOX}
+        <CustomDefaultFormField
+            fieldType={FormFieldChoiceType.CHECKBOX}
             control={form.control}
             name="disclosureConsent"
             label="I consent to disclosure of information" />
-
-        <CustomFormField
-            fieldType={FormFieldType.CHECKBOX}
+                                      
+        <CustomDefaultFormField
+            fieldType={FormFieldChoiceType.CHECKBOX}
             control={form.control}
             name="privacyConsent"
             label="I consent to privacy policy" />
@@ -334,7 +334,7 @@ const  RegisterForm = ({ user }: {user: User}) => {
   )
 }
 
-export default RegisterForm
+export default RegisterFormModal
 
 
 

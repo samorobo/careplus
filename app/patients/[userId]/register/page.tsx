@@ -1,4 +1,4 @@
-import RegisterForm from '@/components/forms/RegisterForm'
+import RegisterFormModal from '@/components/forms/RegisterForm'
 import { getUser } from '@/lib/actions/patient.actions'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -22,7 +22,7 @@ const Register =  async ({ params: { userId }}: SearchParamProps) => {
           alt="patient" 
           className="mb-12 h-10 w-fit" />
 
-          <RegisterForm user={user}/>
+          <RegisterFormModal user={user}/>
           <p className="copyright py-12">
             © 2024 CarePulse
             </p>
