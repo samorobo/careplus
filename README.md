@@ -10,7 +10,7 @@
 ![Project Screenshot](https://github.com/ladunjexa/nextjs14-carepulse/blob/main/public/assets/mockup.png)
 
 ## 🌐 Live Demo
-Explore the live demonstration of the project: [https://careplus-blush.vercel.app/](#)
+Explore the live demonstration of the project: [Carepulse_On_Vercel](https://careplus-blush.vercel.app/)
 
 ## 📝 Description
 **CarePulse** is a healthcare management application that allows patients to schedule appointments and doctors to manage appointments and patient records, dates and decision of  appointment gets communicated to patient via an SMS. Its also offers an AI assisted chatBot that can respond to patient about health issues questions, and offer them useful tips to stay healthy Built with **Next.js**, **Tailwind CSS**, **Shadcn UI**, **Appwrite**, **Twilio**, **LLama3** and **Sentry**.
