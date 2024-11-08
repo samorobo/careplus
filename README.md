@@ -158,8 +158,6 @@ Connect with us on
 - [LinkedIn](https://www.linkedin.com/in/godwin-samuel)
 - [instagram](https://www.instagram.com/godwin839/) 
 
-## 📋 License
-CarePulse is open-source software licensed under the [MIT LICENSE](https://opensource.org/license/mit) 
 
 
 
