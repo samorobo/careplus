@@ -66,7 +66,7 @@ export const columns: ColumnDef<Appointment>[] = [
        // @ts-ignore
       return (
         <div className="flex items-center gap-3">
-          <Image src={doctor?.image || 'images/doctor.jpg'}
+          <Image src={doctor?.image || '/images/doctor?.jpg'}
           alt={doctor?.name || 'Doctor'}
           width={100}
           height={100}
