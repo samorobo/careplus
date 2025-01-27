@@ -3,6 +3,7 @@
 import PasskeyModal from "@/components/PasskeyModal";
 import PatientFormModal from "@/components/forms/PatientFormModal";
 import { Button } from "@/components/ui/button";
+import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -27,6 +28,14 @@ export default function Home({ searchParams}: SearchParamProps) {
             © 2024 CarePulse
             </p>
             <Link href="/?admin=true" className="text-green-500">Admin</Link>
+            <SignedOut>
+              <SignInButton>
+                <button className="text-red-500">Login</button>
+              </SignInButton>
+            </SignedOut>
+            <SignedIn>
+              <UserButton />
+            </SignedIn>
             
             </div>
         </div>

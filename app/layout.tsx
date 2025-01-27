@@ -4,6 +4,16 @@ import "./globals.css";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/theme-provider";
+import { Toaster } from "@/components/ui/toaster";
+
+import {
+  ClerkProvider,
+  SignInButton,
+  SignedIn,
+  SignedOut,
+  UserButton
+} from '@clerk/nextjs'
+
 
 // const geistSans = localFont({
 //   src: "./fonts/GeistVF.woff",
@@ -33,6 +43,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    <ClerkProvider>
     <html lang="en">
       {/* <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
@@ -44,7 +55,9 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
         {children}
         </ThemeProvider>
+        <Toaster />
       </body>
     </html>
+    </ClerkProvider>
   );
 }

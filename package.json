@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@clerk/nextjs": "^6.10.2",
     "@hookform/resolvers": "^3.9.0",
     "@radix-ui/react-alert-dialog": "^1.1.2",
     "@radix-ui/react-checkbox": "^1.1.2",
@@ -19,6 +20,7 @@
     "@radix-ui/react-radio-group": "^1.2.1",
     "@radix-ui/react-select": "^2.1.2",
     "@radix-ui/react-slot": "^1.1.0",
+    "@radix-ui/react-toast": "^1.2.5",
     "@sentry/nextjs": "^8.34.0",
     "@tanstack/react-table": "^8.20.5",
     "@upstash/rag-chat": "^2.0.1",
@@ -40,7 +42,7 @@
     "react-dom": "^18",
     "react-dropzone": "^14.2.9",
     "react-hook-form": "^7.53.0",
-    "react-hot-toast": "^2.4.1",
+    "react-hot-toast": "^2.5.1",
     "react-phone-number-input": "^3.4.8",
     "tailwind-merge": "^2.5.2",
     "tailwindcss-animate": "^1.0.7",
